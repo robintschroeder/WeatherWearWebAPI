@@ -54,6 +54,10 @@
       <Project>{f0131ee5-6378-43b0-94e1-c08f31e05333}</Project>
       <Name>WeatherWearClassLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WWClassLib\WWClassLib.csproj">
+      <Project>{898e54f5-dc03-4f4a-8756-8a14f1a8f3f9}</Project>
+      <Name>WWClassLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
