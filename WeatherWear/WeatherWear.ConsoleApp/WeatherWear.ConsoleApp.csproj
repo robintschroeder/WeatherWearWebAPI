@@ -39,7 +39,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -50,10 +49,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WeatherWearClassLib\WeatherWearClassLib.csproj">
-      <Project>{f0131ee5-6378-43b0-94e1-c08f31e05333}</Project>
-      <Name>WeatherWearClassLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WWClassLib\WWClassLib.csproj">
       <Project>{898e54f5-dc03-4f4a-8756-8a14f1a8f3f9}</Project>
       <Name>WWClassLib</Name>
