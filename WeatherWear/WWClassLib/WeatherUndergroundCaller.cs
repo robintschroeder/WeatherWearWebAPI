@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +15,7 @@ namespace WWClassLib
             //this is the constructor, it is called when the object is created
         }
 
-        public async Task<string> CallForecast(string stateAccronym, string city)
+        public async Task<string> GetForecast(string stateAccronym, string city)
         {
             try
             {
@@ -22,6 +23,9 @@ namespace WWClassLib
 
                 using (HttpClient client = new HttpClient())
                 {
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
                     using (HttpResponseMessage response = await client.GetAsync(path))  //we are actually making the call here
                     {
                         if (response.IsSuccessStatusCode)
@@ -30,6 +34,8 @@ namespace WWClassLib
                             {
                                 // ... Read the string.
                                 string result = await content.ReadAsStringAsync();
+
+                                //TODO: read the result as a forecast obj
 
                                 //return the string
                                 return result;
@@ -48,7 +54,7 @@ namespace WWClassLib
             }
         }
 
-        public async Task<string> CallGeoLookUp(int zip)
+        public async Task<string> GetGeoLookUp(int zip)
         {
             try
             {
@@ -56,6 +62,10 @@ namespace WWClassLib
 
                 using (HttpClient client = new HttpClient())
                 {
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
                     using (HttpResponseMessage response = await client.GetAsync(path))  //we are actually making the call here
                     {
                         if (response.IsSuccessStatusCode)
@@ -64,6 +74,8 @@ namespace WWClassLib
                             {
                                 // ... Read the string.
                                 string result = await content.ReadAsStringAsync();
+
+                                //TODO: read the result as a geolookup obj
 
                                 //return the string
                                 return result;

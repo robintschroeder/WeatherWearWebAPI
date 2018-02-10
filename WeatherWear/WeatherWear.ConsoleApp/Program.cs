@@ -36,13 +36,13 @@ namespace WeatherWear.ConsoleApp
 
                         //LET'S DO SOMETHING RIGHT HERE
                         WeatherUndergroundCaller wug = new WeatherUndergroundCaller();
-                        string geolookupResult = await wug.CallGeoLookUp(zip);
+                        string geolookupResult = await wug.GetGeoLookUp(zip);
                         Console.WriteLine(geolookupResult);
 
                         //now that we have the result of the first call, we can parse it and get the two digit city code and the name of the city
 
                         //I hard coded geneva for right now to make sure the call will work
-                        string forcastResult = await wug.CallForecast("IL", "Geneva");
+                        string forcastResult = await wug.GetForecast("IL", "Geneva");
                         Console.WriteLine(forcastResult);
 
                         //when we have this result, we can parse it to get the weather details so that we can generate our clothing prediction
