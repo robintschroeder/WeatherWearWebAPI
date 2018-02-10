@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ExampleGeoLookup.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WWClassLib\WWClassLib.csproj">

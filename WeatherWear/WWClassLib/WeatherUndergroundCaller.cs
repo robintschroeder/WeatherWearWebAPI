@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -15,7 +16,7 @@ namespace WWClassLib
             //this is the constructor, it is called when the object is created
         }
 
-        public async Task<string> GetForecast(string stateAccronym, string city)
+        public async Task<WWClassLib.Models.Forecast.RootObject> GetForecast(string stateAccronym, string city)
         {
             try
             {
@@ -33,28 +34,31 @@ namespace WWClassLib
                             using (HttpContent content = response.Content)
                             {
                                 // ... Read the string.
-                                string result = await content.ReadAsStringAsync();
+                                //string result = await content.ReadAsStringAsync();
 
-                                //TODO: read the result as a forecast obj
+                                //instead of reading the string, let's convert the JSON into objects and return those
+                                var result = await content.ReadAsAsync<WWClassLib.Models.Forecast.RootObject>();
 
-                                //return the string
                                 return result;
                             }
                         }
                         else
                         {
-                            return $"Error {response.ReasonPhrase}";
+                            Debug.WriteLine($"Error {response.ReasonPhrase}");
+                            return null;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                return $"Error: {ex.Message}";
+                Debug.WriteLine($"Error {ex.Message}");
+                Debug.WriteLine($"StackTrace {ex.StackTrace}");
+                return null;
             }
         }
 
-        public async Task<string> GetGeoLookUp(int zip)
+        public async Task<WWClassLib.Models.GeoLookup.RootObject> GetGeoLookUp(int zip)
         {
             try
             {
@@ -73,24 +77,27 @@ namespace WWClassLib
                             using (HttpContent content = response.Content)
                             {
                                 // ... Read the string.
-                                string result = await content.ReadAsStringAsync();
+                                //string result = await content.ReadAsStringAsync();
 
-                                //TODO: read the result as a geolookup obj
+                                //instead of reading the string, let's convert the JSON into objects and return those
+                                var result = await content.ReadAsAsync<WWClassLib.Models.GeoLookup.RootObject>();
 
-                                //return the string
                                 return result;
                             }
                         }
                         else
                         {
-                            return $"Error {response.ReasonPhrase}";
+                            Debug.WriteLine($"Error {response.ReasonPhrase}");
+                            return null;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                return $"Error: {ex.Message}";
+                Debug.WriteLine($"Error {ex.Message}");
+                Debug.WriteLine($"StackTrace {ex.StackTrace}");
+                return null;
             }
         }
     }

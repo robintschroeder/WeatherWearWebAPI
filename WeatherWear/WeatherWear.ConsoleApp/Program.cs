@@ -36,14 +36,21 @@ namespace WeatherWear.ConsoleApp
 
                         //LET'S DO SOMETHING RIGHT HERE
                         WeatherUndergroundCaller wug = new WeatherUndergroundCaller();
-                        string geolookupResult = await wug.GetGeoLookUp(zip);
-                        Console.WriteLine(geolookupResult);
+                        var geolookupRootObject = await wug.GetGeoLookUp(zip);
 
-                        //now that we have the result of the first call, we can parse it and get the two digit city code and the name of the city
+                        //now that we have the result of the first call, we can parse it and get the two digit city acronym and the name of the city
+                        string city = geolookupRootObject.location.city;
+                        string stateAcronym = geolookupRootObject.location.state;
+                        Console.WriteLine($"Found it! {city}, {stateAcronym}");
 
-                        //I hard coded geneva for right now to make sure the call will work
-                        string forcastResult = await wug.GetForecast("IL", "Geneva");
-                        Console.WriteLine(forcastResult);
+                        //now let's get the weather forcast for that city
+                        var forcastRootObject = await wug.GetForecast(stateAcronym, city);
+
+                        Console.WriteLine($"Current Weather Conditions: {forcastRootObject.forecast.simpleforecast.forecastday[0].conditions}");
+                        Console.WriteLine($"Current High: {forcastRootObject.forecast.simpleforecast.forecastday[0].high.fahrenheit} F");
+                        Console.WriteLine($"Current Low: {forcastRootObject.forecast.simpleforecast.forecastday[0].low.fahrenheit} F");
+                        Console.WriteLine($"Current Average Wind: {forcastRootObject.forecast.simpleforecast.forecastday[0].avewind.mph} mph");
+                        Console.WriteLine($"Current Average Humidity: {forcastRootObject.forecast.simpleforecast.forecastday[0].avehumidity}");
 
                         //when we have this result, we can parse it to get the weather details so that we can generate our clothing prediction
 
