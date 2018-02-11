@@ -34,18 +34,19 @@ namespace WeatherWear.ConsoleApp
                         //we need to switch this boolean to true so that the error message doesn't show up
                         correctInput = true;
 
-                        //LET'S DO SOMETHING RIGHT HERE
+                        Console.WriteLine($"Looking for your zip code... {zip}");
                         WeatherUndergroundCaller wug = new WeatherUndergroundCaller();
                         var geolookupRootObject = await wug.GetGeoLookUp(zip);
 
                         //now that we have the result of the first call, we can parse it and get the two digit city acronym and the name of the city
                         string city = geolookupRootObject.location.city;
                         string stateAcronym = geolookupRootObject.location.state;
-                        Console.WriteLine($"Found it! {city}, {stateAcronym}");
+                        Console.WriteLine($"Found your location! {city}, {stateAcronym}");
 
                         //now let's get the weather forcast for that city
                         var forcastRootObject = await wug.GetForecast(stateAcronym, city);
 
+                        Console.WriteLine($"Found your Weather Forecast!");
                         Console.WriteLine($"Current Weather Conditions: {forcastRootObject.forecast.simpleforecast.forecastday[0].conditions}");
                         Console.WriteLine($"Current High: {forcastRootObject.forecast.simpleforecast.forecastday[0].high.fahrenheit} F");
                         Console.WriteLine($"Current Low: {forcastRootObject.forecast.simpleforecast.forecastday[0].low.fahrenheit} F");
