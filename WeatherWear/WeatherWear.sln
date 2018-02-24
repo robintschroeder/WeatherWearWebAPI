@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherWear", "WeatherWear\WeatherWear.csproj", "{3D04819B-289B-45B0-ABE8-63934784DDD8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherWear.ConsoleApp", "WeatherWear.ConsoleApp\WeatherWear.ConsoleApp.csproj", "{00AA304F-8945-48DF-8A22-A161CD63F39D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WWClassLib", "WWClassLib\WWClassLib.csproj", "{898E54F5-DC03-4F4A-8756-8A14F1A8F3F9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WWHttpClient", "WWHttpClient\WWHttpClient.csproj", "{C71E48FA-1CA4-447E-BE1F-001191D1C0F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3D04819B-289B-45B0-ABE8-63934784DDD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D04819B-289B-45B0-ABE8-63934784DDD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D04819B-289B-45B0-ABE8-63934784DDD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D04819B-289B-45B0-ABE8-63934784DDD8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00AA304F-8945-48DF-8A22-A161CD63F39D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00AA304F-8945-48DF-8A22-A161CD63F39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00AA304F-8945-48DF-8A22-A161CD63F39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,10 +21,6 @@ Global
 		{898E54F5-DC03-4F4A-8756-8A14F1A8F3F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{898E54F5-DC03-4F4A-8756-8A14F1A8F3F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{898E54F5-DC03-4F4A-8756-8A14F1A8F3F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C71E48FA-1CA4-447E-BE1F-001191D1C0F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C71E48FA-1CA4-447E-BE1F-001191D1C0F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C71E48FA-1CA4-447E-BE1F-001191D1C0F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C71E48FA-1CA4-447E-BE1F-001191D1C0F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
