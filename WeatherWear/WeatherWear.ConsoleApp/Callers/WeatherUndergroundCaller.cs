@@ -1,10 +1,13 @@
 ﻿using System;
-using System.Net;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace WeatherWear.ClassLib
+namespace WWClassLib
 {
     public class WeatherUndergroundCaller
     {
@@ -13,7 +16,7 @@ namespace WeatherWear.ClassLib
             //this is the constructor, it is called when the object is created
         }
 
-        public async Task<string> CallForecast(string stateAccronym, string city)
+        public async Task<WWClassLib.Models.Forecast.RootObject> GetForecast(string stateAccronym, string city)
         {
             try
             {
@@ -21,6 +24,9 @@ namespace WeatherWear.ClassLib
 
                 using (HttpClient client = new HttpClient())
                 {
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
                     using (HttpResponseMessage response = await client.GetAsync(path))  //we are actually making the call here
                     {
                         if (response.IsSuccessStatusCode)
@@ -28,26 +34,31 @@ namespace WeatherWear.ClassLib
                             using (HttpContent content = response.Content)
                             {
                                 // ... Read the string.
-                                string result = await content.ReadAsStringAsync();
+                                //string result = await content.ReadAsStringAsync();
 
-                                //return the string
+                                //instead of reading the string, let's convert the JSON into objects and return those
+                                var result = await content.ReadAsAsync<WWClassLib.Models.Forecast.RootObject>();
+
                                 return result;
                             }
                         }
                         else
                         {
-                            return $"Error {response.ReasonPhrase}";
+                            Debug.WriteLine($"Error {response.ReasonPhrase}");
+                            return null;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                return $"Error: {ex.Message}";
+                Debug.WriteLine($"Error {ex.Message}");
+                Debug.WriteLine($"StackTrace {ex.StackTrace}");
+                return null;
             }
         }
 
-        public async Task<string> CallGeoLookUp(int zip)
+        public async Task<WWClassLib.Models.GeoLookup.RootObject> GetGeoLookUp(int zip)
         {
             try
             {
@@ -55,6 +66,10 @@ namespace WeatherWear.ClassLib
 
                 using (HttpClient client = new HttpClient())
                 {
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
                     using (HttpResponseMessage response = await client.GetAsync(path))  //we are actually making the call here
                     {
                         if (response.IsSuccessStatusCode)
@@ -62,22 +77,27 @@ namespace WeatherWear.ClassLib
                             using (HttpContent content = response.Content)
                             {
                                 // ... Read the string.
-                                string result = await content.ReadAsStringAsync();
+                                //string result = await content.ReadAsStringAsync();
 
-                                //return the string
+                                //instead of reading the string, let's convert the JSON into objects and return those
+                                var result = await content.ReadAsAsync<WWClassLib.Models.GeoLookup.RootObject>();
+
                                 return result;
                             }
                         }
                         else
                         {
-                            return $"Error {response.ReasonPhrase}";
+                            Debug.WriteLine($"Error {response.ReasonPhrase}");
+                            return null;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                return $"Error: {ex.Message}";
+                Debug.WriteLine($"Error {ex.Message}");
+                Debug.WriteLine($"StackTrace {ex.StackTrace}");
+                return null;
             }
         }
     }
