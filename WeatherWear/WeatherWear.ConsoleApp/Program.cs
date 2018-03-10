@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WWClassLib;
+using WWClassLib.Engine;
 
 namespace WeatherWear.ConsoleApp
 {
@@ -54,6 +55,11 @@ namespace WeatherWear.ConsoleApp
                         Console.WriteLine($"Current Average Humidity: {forcastRootObject.forecast.simpleforecast.forecastday[0].avehumidity}");
 
                         //when we have this result, we can parse it to get the weather details so that we can generate our clothing prediction
+
+                        WeatherToOutfitEngine w2oe = new WeatherToOutfitEngine();
+                        w2oe.RunEngine(forcastRootObject);
+                        Console.WriteLine($"Hmmmm... We are thinking you should wear: {w2oe.Bottom}");
+
 
                         //then we send the results of the second weather call along with our prediction back to the caller
                     }
