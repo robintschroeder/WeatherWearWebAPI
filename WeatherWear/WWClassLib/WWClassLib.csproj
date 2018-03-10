@@ -82,6 +82,9 @@
   </ItemGroup>
   <ItemGroup />
 
+  <ItemGroup>
+    <Folder Include="Engine\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <Delete Files="bin/$(Configuration)/System.Net.Http.dll" />
