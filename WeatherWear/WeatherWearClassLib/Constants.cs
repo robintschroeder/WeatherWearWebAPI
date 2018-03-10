@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WWClassLib
+namespace WeatherWear.ClassLib
 {
     public static class Constants
     {
